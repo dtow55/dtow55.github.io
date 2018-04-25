@@ -1,7 +1,7 @@
 ---
 layout: post
-title:      "Javascript Concepts: Hoising and Scope"
-date:       2018-04-25 06:17:39 +0000
+title:      "Javascript Concepts: Hoisting and Scope"
+date:       2018-04-25 02:17:39 -0400
 permalink:  javascript_concepts_hoising_and_scope
 ---
 
