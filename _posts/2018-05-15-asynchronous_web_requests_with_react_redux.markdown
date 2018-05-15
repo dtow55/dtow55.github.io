@@ -38,24 +38,29 @@ To solve this issue, we can use .then(), which takes a function as an argument a
 export function fetchData() {
  fetch('http://www.api.com').then(response => {
   return {
-type: 'FETCH_DATA', 
-data: response.json()
+  type: 'FETCH_DATA', 
+  data: response.json()
 	}
 	});
  }
 }
 ```
 
-By enclosing the return statement in .then(), we make sure that the returned action data key is pointing to valid data. Although we have solved the issue of asynchrony, there is another objective we'd like to accomplish as well - we want to be able to render our page before the fetchData() function loads data in case there is a lot of data and it takes a while to load. 
+By enclosing the return statement in .then(), we make sure that the returned action data key is pointing to valid data. Although we have solved the issue of asynchrony, there is another objective we'd like to accomplish as well - we want to be able to render our page before the fetchData() function loads data in case there is a lot of data and it takes a while to load. To do this, let's first set up our action function to return a function instead of an action: 
 
-To do this, let's first set up our action function to return a function instead of an action: 
+**Import Thunk Middleware**
+By default, the program will return an error if we try to return a function from our action function (it is expecting an action object). Thunk enables our action function to return a function instead of an action object. 
+```
+import thunk from 'redux-thunk'; //Paste this line at the top of index.js
+```
 
+**Connect the **
 ```
-import rootReducer from './reducers'; //Paste this line at the top of index.js
-```
+//ReactComponent.js file
 
-```
-//ReactComponent.js
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import { fetchData } from '../actions/fetchData' //Simply importing the file that contains fetchData()
 ```
 
 
