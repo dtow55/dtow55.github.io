@@ -1,7 +1,7 @@
 ---
 layout: post
 title:      "Asynchronous Web Requests with React/Redux"
-date:       2018-05-15 19:38:10 +0000
+date:       2018-05-15 15:38:11 -0400
 permalink:  asynchronous_web_requests_with_react_redux
 ---
 
@@ -25,7 +25,7 @@ export function fetchData() {
  const data = fetch('http://www.api.com');
  return {
   type: 'FETCH_DATA',
-	data
+  data
  }
 }
 ```
