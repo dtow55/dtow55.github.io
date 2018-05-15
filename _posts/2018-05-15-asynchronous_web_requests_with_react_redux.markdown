@@ -38,8 +38,8 @@ To solve this issue, we can use .then(), which takes a function as an argument a
 export function fetchData() {
  fetch('http://www.api.com').then(response => {
   return {
-  type: 'FETCH_DATA', 
-  data: response.json()
+   type: 'FETCH_DATA', 
+   data: response.json()
 	}
 	});
  }
