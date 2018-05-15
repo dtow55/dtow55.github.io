@@ -18,7 +18,7 @@ Our goal is to populate the array with objects from our back-end API:
 state = [obj1, obj2, obj3, ...]
 ```
 
-We will use JS's fetch() function within an action-creator function to query the API. Below might seem to be the most straightforward strategy (ensure www.api.com is rendering a JSON response and not HTML): 
+We will use JS's fetch() function within an action-creator function to query the API. Below might seem to be the most straightforward strategy. Additionally, ensure www.api.com is rendering a JSON response and not HTML, and ensure you have a Redux reducer function that can handle the action we're returning. 
 
 ```
 export function fetchData() {
@@ -52,8 +52,8 @@ By enclosing the return statement in .then(), we make sure that the returned act
 export function fetchData() {
  fetch('http://www.api.com').then(response => {
   return {
-	type: 'FETCH_DATA', 
-	data: response.json()
+   type: 'FETCH_DATA', 
+   data: response.json()
 	}
 	});
  }
