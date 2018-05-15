@@ -40,8 +40,8 @@ export function fetchData() {
   return {
    type: 'FETCH_DATA', 
    data: response.json()
-	}
-	});
+  }
+ });
  }
 }
 ```
@@ -54,9 +54,9 @@ By default, the program will return an error if we try to return a function from
 import thunk from 'redux-thunk'; //Paste this line at the top of index.js
 ```
 
-**Connect the **
+**Connect fetchData() to Redux State**
 ```
-//ReactComponent.js file
+//In a ReactComponent.js file that will be calling 
 
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
