@@ -46,5 +46,17 @@ export function fetchData() {
 }
 ```
 
-By enclosing the return statement in .then(), we make sure that the returned action data key is pointing to valid data. Although we have solved the issue of asynchrony, there are a few other objectives we'd like to accomplish: 
-* 
+By enclosing the return statement in .then(), we make sure that the returned action data key is pointing to valid data. Although we have solved the issue of asynchrony, there is another objective we'd like to accomplish as well - we want to be able to render our page before the fetchData() function loads data in case there is a lot of data and it takes a while to load. To do this, we will refactor our code as follows: 
+
+```
+export function fetchData() {
+ fetch('http://www.api.com').then(response => {
+  return {
+	type: 'FETCH_DATA', 
+	data: response.json()
+	}
+	});
+ }
+}
+```
+
