@@ -32,14 +32,19 @@ export function fetchData() {
 
 However, this won't work. Reason is that fetch() is asynchronous - it returns a Promise object which initially doesn't contain the data we want. Only after a few moments, the Promise resolves and contains the useful data. However, if you don't handle this properly, subsequent code will run before the useful data is obtained. The above code sets 'data' equal to an [unresolved] Promise, and proceeds to return this useless Promise within an action. 
 
+To solve this issue, we can use .then(), which takes a function as an argument and executes that function only when the Promise has been resolved and the response received. 
+
 ```
 export function fetchData() {
- const data = fetch('http://www.api.com').then(response => {
+ fetch('http://www.api.com').then(response => {
   return {
-	 type: 'FETCH_DATA', 
-	 data
-	 }
+	type: 'FETCH_DATA', 
+	data: response.json()
+	}
 	});
  }
 }
 ```
+
+By enclosing the return statement in .then(), we make sure that the returned action data key is pointing to valid data. Although we have solved the issue of asynchrony, there are a few other objectives we'd like to accomplish: 
+* 
