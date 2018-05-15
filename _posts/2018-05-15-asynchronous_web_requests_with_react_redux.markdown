@@ -38,18 +38,33 @@ To solve this issue, we can use .then(), which takes a function as an argument a
 export function fetchData() {
  fetch('http://www.api.com').then(response => {
   return {
-	type: 'FETCH_DATA', 
-	data: response.json()
+type: 'FETCH_DATA', 
+data: response.json()
 	}
 	});
  }
 }
 ```
 
-By enclosing the return statement in .then(), we make sure that the returned action data key is pointing to valid data. Although we have solved the issue of asynchrony, there is another objective we'd like to accomplish as well - we want to be able to render our page before the fetchData() function loads data in case there is a lot of data and it takes a while to load. To do this, we will refactor our code as follows: 
+By enclosing the return statement in .then(), we make sure that the returned action data key is pointing to valid data. Although we have solved the issue of asynchrony, there is another objective we'd like to accomplish as well - we want to be able to render our page before the fetchData() function loads data in case there is a lot of data and it takes a while to load. 
+
+To do this, let's first set up our action function to return a function instead of an action: 
+
+```
+import rootReducer from './reducers'; //Paste this line at the top of index.js
+```
+
+```
+//ReactComponent.js
+```
+
 
 ```
 export function fetchData() {
+ return(dispatch) => {
+  dispatch({type: 'LOADING_DATA'});
+	return fetch 
+ }
  fetch('http://www.api.com').then(response => {
   return {
    type: 'FETCH_DATA', 
