@@ -39,10 +39,10 @@ export function fetchData() {
  fetch('http://www.api.com')
  .then(response => response.json())
  .then(data => {
- return {
- type: 'FETCH_DATA'
- data: data
- }
+  return {
+  type: 'FETCH_DATA'
+  data: data
+  }
  }
 }
 ```
@@ -94,4 +94,6 @@ export function fetchData() {
  }
 }
 ```
+
+You can use the 'LOADING DATA' action type to let your state/program know that data is being loaded and design your program to render some specific content while data is being loaded, and then use the 'FETCH_DATA' action to tell the program to render the final content once the data has been loaded. 
 
