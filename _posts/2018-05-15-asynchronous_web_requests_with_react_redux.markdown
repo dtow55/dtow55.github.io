@@ -49,7 +49,6 @@ export function fetchData() {
 By enclosing the return statement in .then(), we make sure that the returned action data key is pointing to valid data. Although we have solved the issue of asynchrony, there is another objective we'd like to accomplish as well - we want to be able to render our page before the fetchData() function loads data in case there is a lot of data and it takes a while to load. To do this, let's first set up our action function to return a function instead of an action: 
 
 **Import Thunk Middleware**
-
 By default, the program will return an error if we try to return a function from our action function (it is expecting an action object). Thunk enables our action function to return a function instead of an action object. 
 ```
 import thunk from 'redux-thunk'; //Paste this line at the top of index.js
@@ -76,7 +75,8 @@ const mapDispatchToProps = (dispatch) => {
 export default connect(null, mapDispatchToProps)(ReactComponent)
 ```
 
-
+**Back to fetchData()**
+The code below gives our action fun
 ```
 export function fetchData() {
  return(dispatch) => {
