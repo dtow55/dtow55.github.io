@@ -68,7 +68,7 @@ import { fetchData } from '../actions/fetchData' //Simply importing the file tha
 
 const mapDispatchToProps = (dispatch) => {
  return bindActionCreators({
- fetchData: fetchData
+  fetchData: fetchData
  }
 }
 
@@ -86,11 +86,10 @@ export function fetchData() {
  fetch('http://www.api.com')
  .then(response => response.json())
  .then(data => {
- return {
- type: 'FETCH_DATA'
- data: data
- }
- }
+  return {
+   type: 'FETCH_DATA'
+   data: data
+  }
  }
 }
 ```
