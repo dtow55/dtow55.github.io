@@ -36,26 +36,26 @@ To solve this issue, we can use .then(), which takes a function as an argument a
 
 ```
 export function fetchData() {
- fetch('http://www.api.com').then(response => {
-  return {
-   type: 'FETCH_DATA', 
-   data: response.json()
-  }
- });
+ fetch('http://www.api.com')
+ .then(response => response.json())
+ .then(data => {
+ return {
+ type: 'FETCH_DATA'
+ data: data
+ }
  }
 }
 ```
 
 By enclosing the return statement in .then(), we make sure that the returned action data key is pointing to valid data. Although we have solved the issue of asynchrony, there is another objective we'd like to accomplish as well - we want to be able to render our page before the fetchData() function loads data in case there is a lot of data and it takes a while to load. To do this, let's first set up our action function to return a function instead of an action: 
 
-**Import Thunk Middleware**
+**Import Thunk Middleware:**
 By default, the program will return an error if we try to return a function from our action function (it is expecting an action object). Thunk enables our action function to return a function instead of an action object. 
 ```
 import thunk from 'redux-thunk'; //Paste this line at the top of index.js
 ```
 
-**Connect fetchData() to Redux State**
-
+**Connect fetchData() to Redux State:**
 The code below gives our action function access to the Redux state dispatch method
 ```
 //In a ReactComponent.js file that will be calling 
@@ -75,20 +75,22 @@ const mapDispatchToProps = (dispatch) => {
 export default connect(null, mapDispatchToProps)(ReactComponent)
 ```
 
-**Back to fetchData()**
-The code below gives our action fun
+**Back to fetchData():**
+The code below was refactored such that (1) it returns a function (instead of an action object) that takes the Redux dispatch as an argument, (2) immediately calls the dispatch function and passes a 'LOADING_DATA' action type, (3) sends a request to the API and uses .then() to handle asynchrony and ultimately pass the desired data to Redux state.
 ```
 export function fetchData() {
  return(dispatch) => {
-  dispatch({type: 'LOADING_DATA'});
+  dispatch({type: 'LOADING_DATA'}); //Modify your reducer to handle this
 	return fetch 
  }
- fetch('http://www.api.com').then(response => {
-  return {
-   type: 'FETCH_DATA', 
-   data: response.json()
-	}
-	});
+ fetch('http://www.api.com')
+ .then(response => response.json())
+ .then(data => {
+ return {
+ type: 'FETCH_DATA'
+ data: data
+ }
+ }
  }
 }
 ```
